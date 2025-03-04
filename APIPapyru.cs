@@ -8,7 +8,7 @@ namespace APIPapyru
     {
         public static RenderTarget2D render1;
         public static RenderTarget2D render2;
-        public static RenderHelperSystem renderHelperSystem;
+        public static RenderHelperSystem renderHelperSystem = new();
         public override void Load()
         {
             On_FilterManager.EndCapture += On_FilterManager_EndCapture;
@@ -19,8 +19,11 @@ namespace APIPapyru
         {
             Main.QueueMainThreadAction(() =>
             {
-                render1 = new(Main.graphics.GraphicsDevice, Main.screenWidth, Main.screenHeight);
-                render2 = new(Main.graphics.GraphicsDevice, Main.screenWidth, Main.screenHeight);
+                GraphicsDevice g = Main.instance.GraphicsDevice;
+                render1 = new RenderTarget2D(Main.graphics.GraphicsDevice, g.PresentationParameters.BackBufferWidth,
+                    g.PresentationParameters.BackBufferHeight, false, g.PresentationParameters.BackBufferFormat, 0);
+                render2 = new RenderTarget2D(Main.graphics.GraphicsDevice, g.PresentationParameters.BackBufferWidth,
+                    g.PresentationParameters.BackBufferHeight, false, g.PresentationParameters.BackBufferFormat, 0);
             });
         }
 
@@ -28,14 +31,17 @@ namespace APIPapyru
         {
             Main.QueueMainThreadAction(() =>
             {
-                render1 = new(Main.graphics.GraphicsDevice, Main.screenWidth, Main.screenHeight);
-                render2 = new(Main.graphics.GraphicsDevice, Main.screenWidth, Main.screenHeight);
+                GraphicsDevice g = Main.instance.GraphicsDevice;
+                render1 = new RenderTarget2D(Main.graphics.GraphicsDevice, g.PresentationParameters.BackBufferWidth,
+                    g.PresentationParameters.BackBufferHeight, false, g.PresentationParameters.BackBufferFormat, 0);
+                render2 = new RenderTarget2D(Main.graphics.GraphicsDevice, g.PresentationParameters.BackBufferWidth,
+                    g.PresentationParameters.BackBufferHeight, false, g.PresentationParameters.BackBufferFormat, 0);
             });
             orig.Invoke();
         }
         public static void On_FilterManager_EndCapture(On_FilterManager.orig_EndCapture orig, FilterManager self, RenderTarget2D finalTexture, RenderTarget2D screenTarget1, RenderTarget2D screenTarget2, Color clearColor)
         {
-            renderHelperSystem.Draw(render1,render2);
+            renderHelperSystem?.Draw(render1,render2);
             orig.Invoke(self, finalTexture, screenTarget1, screenTarget2, clearColor);
         }
     }
