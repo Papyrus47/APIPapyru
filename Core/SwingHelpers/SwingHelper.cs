@@ -446,12 +446,19 @@
                     if (SetZ != null) z = SetZ(factor);
 
 
-                    customVertices.Add(new(pos, drawColor, new Vector3(factor, 0, z)));
-                    customVertices.Add(new(pos + vel, drawColor, new Vector3(factor, 1, z)));
+                    customVertices.Add(new(pos, drawColor, new Vector3(0, 0, z)));
+                    customVertices.Add(new(pos + vel, drawColor, new Vector3(0, 1, z)));
 
                 }
+                
                 if (customVertices.Count > 4 * DrawTrailCount)
                 {
+                    for(int i = customVertices.Count - 1 ;i > 0;i -= 2)
+                    {
+                        float factor = (float)i / customVertices.Count;
+                        customVertices[i] = new CustomVertexInfo(customVertices[i].Position, customVertices[i].Color, new Vector3(factor, 1, customVertices[i].TexCoord.Z));
+                        customVertices[i - 1] = new CustomVertexInfo(customVertices[i - 1].Position, customVertices[i - 1].Color, new Vector3(factor, 0, customVertices[i - 1].TexCoord.Z));
+                    }
                     List<CustomVertexInfo> vertices = TheUtility.GenerateTriangle(customVertices);
                     GraphicsDevice gd = Main.graphics.GraphicsDevice;
                     //var origin = gd.RasterizerState;

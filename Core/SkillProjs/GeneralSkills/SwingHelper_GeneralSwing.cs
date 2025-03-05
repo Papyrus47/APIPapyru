@@ -211,7 +211,7 @@ namespace APIPapyru.Core.SkillProjs.GeneralSkills
                         break;
                     }
                     SwingHelper.ProjFixedPlayerCenter(Player, 0, true);
-                    SwingHelper.SetNotSaveOldVel();
+                    // SwingHelper.SetNotSaveOldVel();
                     postAtk.OnEnd?.Invoke(this);
                     SwingHelper.SwingAI(setting.SwingLenght, Player.direction, setting.SwingRot * setting.SwingDirectionChange.ToDirectionInt() * (1 + Projectile.ai[1] * 0.001f));
                     break;
