@@ -5,3 +5,4 @@ SpurtHelper：快捷帮助人实现突刺的帮助类（可继承）
 技能表NPC：一个拥有强大功能的存在（需要手动实现技能效果，然后手动添加技能什么的，具体可以访问最终铜短剑）
 技能表Proj：一个拥有强大功能的存在，拥有内置的SwingHelper技能类与SpurtHelper技能类与一个投掷类与一个手持类
 RenderHelper：Render绘制帮助系统
+PartcleSystem：粒子系统，继承BasicPartcle即可

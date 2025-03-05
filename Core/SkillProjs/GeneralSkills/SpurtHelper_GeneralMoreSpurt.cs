@@ -136,6 +136,8 @@ namespace APIPapyru.Core.SkillProjs.GeneralSkills
             Projectile.rotation = 0;
             SyncData();
             Projectile.numHits = 0;
+            Player.fullRotation = 0;
+            Player.fullRotationOrigin = new Vector2(Player.width * 0.5f, Player.height);
         }
         //public static void MoreSpurtDraw_Proj(SpurtHelper spurt, SpriteBatch sb, params object[] args)
         //{

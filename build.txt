@@ -1,3 +1,4 @@
 displayName = Papyru的APIMod
 author = Papyru
-version = 0.1.2
+version = 0.1.6
+homepage = https://github.com/Papyrus47/APIPapyru
