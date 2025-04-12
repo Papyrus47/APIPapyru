@@ -14,6 +14,7 @@ namespace APIPapyru
             On_FilterManager.EndCapture += On_FilterManager_EndCapture;
             On_Main.LoadWorlds += On_Main_LoadWorlds;
             Main.OnResolutionChanged += Main_OnResolutionChanged;
+            AssetPreservation.Load();
         }
         private static void Main_OnResolutionChanged(Vector2 obj)
         {
